@@ -1,0 +1,85 @@
+const Posts=require("../model/blogModel")
+
+exports.getAllPost=async(req,res,next)=>{
+    try{
+const posts=await Posts.find()
+res.status(200).json({
+    status:"sucess",
+    results:posts.length,
+    data:{
+        posts,
+    }
+})
+    }catch(e){
+        res.status(400).json({
+            status:"error"
+        })
+    }
+}
+exports.getOnePost=async(req,res,next)=>{
+    try{
+const posts=await Posts.findById(req.params.id)
+res.status(200).json({
+    status:"sucess",
+    results:posts.length,
+    data:{
+        posts,
+    }
+})
+    }catch(e){
+        res.status(400).json({
+            status:"error",
+            message:e.message
+        })
+    }
+}
+exports.createPost=async(req,res,next)=>{
+    try{
+const posts=await Posts.create(req.body)
+res.status(200).json({
+    status:"sucess",
+    results:posts.length,
+    data:{
+        posts,
+    }
+})
+    }catch(e){
+        res.status(400).json({
+            status:"error"
+        })
+    }
+}
+exports.updateOnePost=async(req,res,next)=>{
+    try{
+const posts=await Posts.findByIdAndUpdate(req.params.id,req.body,{
+    new:true,
+    runValidators:true
+})
+res.status(200).json({
+    status:"sucess",
+    results:posts.length,
+    data:{
+        posts,
+    }
+})
+    }catch(e){
+        res.status(400).json({
+            status:"error"
+        })
+    }
+}
+exports.deletePost=async(req,res,next)=>{
+    try{
+const posts=await Posts.findByIdAndDelete(req.params.id)
+res.status(200).json({
+    status:"sucess",
+    data:{
+        posts,
+    }
+})
+    }catch(e){
+        res.status(400).json({
+            status:"error"
+        })
+    }
+}
