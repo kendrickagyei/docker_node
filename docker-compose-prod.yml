@@ -16,7 +16,13 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=production
+      - MONGO_USERNAME=${USER}
+      - MONGO__PASSWORD=${MONGO_PASSWORD}
+       - SESSION_SECRET=${SESSION_SECRET}
     #  env_file:
     #    - ./.env
     command: node index.js
-        
+  mongo:
+     environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
