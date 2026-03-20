@@ -16,7 +16,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=${NODE_ENV}
-      - MONGO_USERNAME=${USER}
+      - MONGO_USERNAME=${MONGO_USERNAME}
       - MONGO_PASSWORD=${MONGO_PASSWORD}
       - SESSION_SECRET=${SESSION_SECRET}
     #  env_file:
